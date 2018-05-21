@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Tappapp2
   class Application < Rails::Application
-
+    config.api_only = true
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,
@@ -18,6 +18,22 @@ module Tappapp2
         controller_specs: false,
         request_specs: false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
+    end
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+          headers: :any,
+          expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+          methods: [:get, :post, :options, :delete, :put]
+      end
+    end
+
+    Untappd.configure do |config|
+      config.client_id = ENV["UNTAPPD_CLIENT_ID"]
+      config.client_secret = ENV["UNTAPPD_CLIENT_SECRET"]
+      config.gmt_offset = -5
     end
 
     # Initialize configuration defaults for originally generated Rails version.
