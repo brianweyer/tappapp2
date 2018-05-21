@@ -1,3 +1,46 @@
-<p>
-  login works!
-</p>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+
+      <div class="columns is-mobile is-centered">
+        <div class="column is-one-third is-narrow">
+          <div class="container">
+            <h1 class="title is-1">Login</h1>
+          </div>
+          <br>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="field">
+              <div class="control">
+                <input class="input" type="email" mdInput formControlName="email" placeholder="Email" required [ngClass]="{ 'is-danger': loginForm.controls['email'].errors && !loginForm.controls['email'].untouched }">
+                <div *ngIf="!loginForm.controls['email'].valid && !loginForm.controls['email'].pristine">
+                  <p class="help is-danger" [ngClass]="{ 'is-hidden': !loginForm.controls['email'].errors.required && !loginForm.controls['email'].untouched && !loginForm.controls['email'].errors.email }">Email is required</p>
+                  <p class="help is-danger" [ngClass]="{ 'is-hidden': loginForm.controls['email'].errors.required && !loginForm.controls['email'].untouched && !loginForm.controls['email'].errors.email }">Please enter a valid email address</p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input" type="password" mdInput formControlName="password" placeholder="Password" required [ngClass]="{ 'is-danger': loginForm.controls['password'].errors && (!loginForm.controls['password'].pristine || !loginForm.controls['password'].untouched)}">
+                <div *ngIf="!loginForm.controls['password'].valid && !loginForm.controls['password'].pristine">
+                  <p class="help is-danger">Password is required</p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <p class="help is-danger" *ngIf="errors != ''">{{errors}}</p>
+              </div>
+            </div>
+            <div class="field is-grouped is-grouped-right">
+              <p class="control">
+                <button type="submit" class="button is-primary" [disabled]="!loginForm.valid">
+                  Login
+                </button>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

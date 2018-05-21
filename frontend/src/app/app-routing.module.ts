@@ -10,7 +10,7 @@ import { BreweriesComponent } from 'src/app/views/breweries/breweries.component'
 import { HistoryComponent } from 'src/app/views/history/history.component';
 import { NotFoundComponent } from 'src/app/views/not-found/not-found.component';
 
-const appRoutes: ModuleWithProviders = RouterModule.forRoot(routes, { enableTracing: true });
+const appRoutes: ModuleWithProviders = RouterModule.forRoot(routes);
 
 @NgModule({
     imports: [
