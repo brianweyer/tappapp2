@@ -8,8 +8,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'devise'
 gem 'devise_token_auth'
 gem 'rack-cors', require: 'rack/cors'
+gem 'untappd'
+gem 'omniauth'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -25,7 +28,6 @@ group :test do
   gem 'chromedriver-helper'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise'
 gem 'pg'
 gem 'thin'
 group :development do
